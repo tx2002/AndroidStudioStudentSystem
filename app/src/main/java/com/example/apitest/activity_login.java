@@ -1,18 +1,17 @@
 package com.example.apitest;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.apitest.entity.CommonResult;
 import com.example.apitest.entity.LoginResponse;
+import com.example.apitest.util.ToastUtil;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -25,6 +24,7 @@ public class activity_login extends Activity implements View.OnClickListener {
     private EditText et_username;
     private EditText et_password;
     private Button bt_login;
+    private LoginResponse loginResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,7 @@ public class activity_login extends Activity implements View.OnClickListener {
             @Override
             public void run() {
                 try {
+                    // apifox中的请求代码
                     OkHttpClient client = new OkHttpClient().newBuilder()
                             .build();
                     MediaType mediaType = MediaType.parse("text/plain");
@@ -68,6 +69,7 @@ public class activity_login extends Activity implements View.OnClickListener {
                             .method("POST", body)
                             .build();
                     Response response = client.newCall(request).execute();
+                    // 得到响应后，转化为json
                     String data = response.body().string();
                     LoginResponse res = parseJSONWithGSON(data);
                     if (res.getCode() == 200) {
@@ -77,13 +79,26 @@ public class activity_login extends Activity implements View.OnClickListener {
                         editor.putString("role", res.getData().getRole());
                         editor.putString("token", res.getData().getToken());
                         editor.commit();
-                        // 页面跳转
+                        // 页面跳转，根据role的值判断身份
                         Intent intent = new Intent();
-                        //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
-                        intent.setClass(activity_login.this, activity_main.class);
+                        switch (res.getData().getRole()) {
+                            case "0":
+                                //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                                intent.setClass(activity_login.this, activity_admin.class);
+                                break;
+                            case "1":
+                                intent.setClass(activity_login.this, activity_teacher.class);
+                                break;
+                            case "2":
+                                intent.setClass(activity_login.this, activity_student.class);
+                                break;
+                        }
                         startActivity(intent);
                     } else {
-                        new AlertDialog.Builder(activity_login.this).setTitle(res.getMessage()).show();
+                        // 弹窗提示
+                        Looper.prepare();
+                        ToastUtil.showMsg(getApplicationContext(), res.getMessage());
+                        Looper.loop();
                     }
                 } catch (
                         Exception e) {
@@ -91,6 +106,8 @@ public class activity_login extends Activity implements View.OnClickListener {
                 }
             }
         }).start();
+
+
 
     }
 

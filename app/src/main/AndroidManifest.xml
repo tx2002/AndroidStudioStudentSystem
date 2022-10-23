@@ -24,7 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity_main"></activity>
+        <activity android:name=".activity_teacher"></activity>
+        <activity android:name=".activity_admin"></activity>
+        <activity android:name=".activity_student"></activity>
     </application>
 
 </manifest>

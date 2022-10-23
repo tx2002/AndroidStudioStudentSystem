@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class activity_main extends Activity {
+public class activity_teacher extends Activity {
     private TextView tv;
 
     @Override
@@ -16,7 +16,7 @@ public class activity_main extends Activity {
         // 读取暂存数据
         SharedPreferences settings = getSharedPreferences("setting", 0);
         // 第二个值为默认值
-        String role = settings.getString("role", "0");
+        String role = settings.getString("role", null);
         String token = settings.getString("token", "null");
 
         tv = (TextView) findViewById(R.id.tv_main);
