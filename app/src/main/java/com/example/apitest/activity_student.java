@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import com.example.apitest.entity.NormalResponse;
+import com.example.apitest.entity.student.ChooseCourseInfo;
+import com.example.apitest.entity.student.CourseInfo;
+import com.example.apitest.entity.student.ScoreInfo;
+import com.example.apitest.entity.student.StudentInfo;
 import com.google.gson.Gson;
 
 import okhttp3.MediaType;
@@ -59,7 +63,7 @@ public class activity_student extends Activity {
 
                     // 得到响应后，转化为json
                     String data = response.body().string();
-                    NormalResponse res = parseJSONWithGSON(data);
+                    StudentInfo res = parseJSONWithGSON(data, new StudentInfo());
                     if (res.getCode() == 200) {
                         // todo
                     } else {
@@ -99,7 +103,7 @@ public class activity_student extends Activity {
 
                     // 得到响应后，转化为json
                     String data = response.body().string();
-                    NormalResponse res = parseJSONWithGSON(data);
+                    CourseInfo res = parseJSONWithGSON(data, new CourseInfo());
                     if (res.getCode() == 200) {
                         // todo
                     } else {
@@ -141,7 +145,7 @@ public class activity_student extends Activity {
 
                     // 得到响应后，转化为json
                     String data = response.body().string();
-                    NormalResponse res = parseJSONWithGSON(data);
+                    ScoreInfo res = parseJSONWithGSON(data, new ScoreInfo());
                     if (res.getCode() == 200) {
                         // todo
                     } else {
@@ -183,7 +187,7 @@ public class activity_student extends Activity {
 
                     // 得到响应后，转化为json
                     String data = response.body().string();
-                    NormalResponse res = parseJSONWithGSON(data);
+                    ChooseCourseInfo res = parseJSONWithGSON(data, new ChooseCourseInfo());
                     if (res.getCode() == 200) {
                         // todo
                     } else {
@@ -229,7 +233,7 @@ public class activity_student extends Activity {
 
                     // 得到响应后，转化为json
                     String data = response.body().string();
-                    NormalResponse res = parseJSONWithGSON(data);
+                    NormalResponse res = parseJSONWithGSON(data, new NormalResponse());
                     if (res.getCode() == 200) {
                         // todo
                     } else {
@@ -272,7 +276,7 @@ public class activity_student extends Activity {
 
                     // 得到响应后，转化为json
                     String data = response.body().string();
-                    NormalResponse res = parseJSONWithGSON(data);
+                    NormalResponse res = parseJSONWithGSON(data, new NormalResponse());
                     if (res.getCode() == 200) {
                         // todo
                     } else {
@@ -317,7 +321,7 @@ public class activity_student extends Activity {
 
                     // 得到响应后，转化为json
                     String data = response.body().string();
-                    NormalResponse res = parseJSONWithGSON(data);
+                    NormalResponse res = parseJSONWithGSON(data, new NormalResponse());
                     if (res.getCode() == 200) {
                         // todo
                     } else {
@@ -333,10 +337,40 @@ public class activity_student extends Activity {
     }
 
 
-    private NormalResponse parseJSONWithGSON(String jsonData) {
+    private NormalResponse parseJSONWithGSON(String jsonData, NormalResponse a) {
         //使用轻量级的Gson解析得到的json
         Gson gson = new Gson();
         NormalResponse res = gson.fromJson(jsonData, NormalResponse.class);
         return res;
     }
+
+    private StudentInfo parseJSONWithGSON(String jsonData, StudentInfo a) {
+        //使用轻量级的Gson解析得到的json
+        Gson gson = new Gson();
+        StudentInfo res = gson.fromJson(jsonData, StudentInfo.class);
+        return res;
+    }
+
+    private CourseInfo parseJSONWithGSON(String jsonData, CourseInfo a) {
+        //使用轻量级的Gson解析得到的json
+        Gson gson = new Gson();
+        CourseInfo res = gson.fromJson(jsonData, CourseInfo.class);
+        return res;
+    }
+
+    private ScoreInfo parseJSONWithGSON(String jsonData, ScoreInfo a) {
+        //使用轻量级的Gson解析得到的json
+        Gson gson = new Gson();
+        ScoreInfo res = gson.fromJson(jsonData, ScoreInfo.class);
+        return res;
+    }
+
+    private ChooseCourseInfo parseJSONWithGSON(String jsonData, ChooseCourseInfo a) {
+        //使用轻量级的Gson解析得到的json
+        Gson gson = new Gson();
+        ChooseCourseInfo res = gson.fromJson(jsonData, ChooseCourseInfo.class);
+        return res;
+    }
+
+
 }
