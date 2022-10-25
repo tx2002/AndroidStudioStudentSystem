@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/menu"
+            />
+
+        <TextView
+            android:layout_width="144dp"
+            android:layout_height="27dp"
+            android:text="学生管理系统"
+            android:textSize="18sp"
+            android:layout_weight="700"
+            />
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/avatar"
+            />
+
+    </View>
+
+
+    <TextView
+        android:layout_width="194dp"
+        android:layout_height="29dp"
+        android:text="Hello!Student Li"
+        android:textSize="24sp"
+        android:layout_weight="700"
+        />
+
+    <EditText
+        android:layout_width="348dp"
+        android:layout_height="50dp"
+        android:background="@drawable/inquery_input_wrapper"
+        />
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:text="选课查询"
+        android:textSize="18sp"
+        android:textFontWeight="700"
+        android:background="@drawable/button1"
+        />
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:text="成绩单"
+        android:textSize="18sp"
+        android:textFontWeight="700"
+        android:background="@drawable/button2"
+
+        />
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:text="GPA计算器"
+        android:textSize="18sp"
+        android:textFontWeight="700"
+        android:background="@drawable/button3"
+
+        />
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:text="我的信息"
+        android:textSize="18sp"
+        android:textFontWeight="700"
+        android:background="@drawable/button4"
+
+        />
+
+</LinearLayout>

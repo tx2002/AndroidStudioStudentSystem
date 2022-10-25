@@ -90,7 +90,7 @@ public class activity_login extends Activity implements View.OnClickListener {
                                 intent.setClass(activity_login.this, activity_teacher.class);
                                 break;
                             case "2":
-                                intent.setClass(activity_login.this, activity_student.class);
+                                intent.setClass(activity_login.this, activity_teacher.class);
                                 break;
                         }
                         startActivity(intent);
